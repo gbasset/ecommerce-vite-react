@@ -1,17 +1,12 @@
-import Button from 'common/design-system/Button/Button.tsx';
+import { AddCartButton } from './features/cart/add-cart-product/ui/AddCartButton/AddCartButton.tsx';
 
 function App() {
+    const addToCart = (): void => {
+        console.log('call API pour ajouter le produit au panier côté serveur');
+    };
     return (
         <>
-            <Button variant={'contained'} onClick={() => console.log('bla')}>
-                Ajouter au panier
-            </Button>{' '}
-            <Button
-                // variant={'contained'}
-                onClick={() => console.log('bla')}
-            >
-                Retirer du panier
-            </Button>
+            <AddCartButton addToCart={addToCart} />
         </>
     );
 }
