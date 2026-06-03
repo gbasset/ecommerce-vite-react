@@ -2,7 +2,7 @@ import { CartCount } from './features/cart/display-cart-count/ui/CartCount/CartC
 
 function App() {
     return (
-        <div className={'mt-3 '}>
+        <div className={'mt-3'}>
             <CartCount cartCount={8}></CartCount>
         </div>
     );
