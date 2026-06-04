@@ -1,9 +1,12 @@
-import { CartCount } from './features/cart/display-cart-count/ui/CartCount/CartCount.tsx';
 
+import { ProductSearch } from './features/product/search-product/ui/ProductSearch/ProductSearch.tsx';
 function App() {
+    const handleSubmit = (search: string) => {
+        console.log(search);
+    };
     return (
         <div className={'mt-3'}>
-            <CartCount cartCount={8}></CartCount>
+            <ProductSearch onSubmit={handleSubmit} />
         </div>
     );
 }
