@@ -14,8 +14,9 @@ export const ProductSearch = ({ onSubmit }: Props): ReactElement => {
         e.preventDefault();
         onSubmit(search);
     };
-    return <form onSubmit={handleSubmit}>
+    return <form onSubmit={handleSubmit} className='w-full flex'>
         <input 
+            className='w-full'
             type="text" 
             id="product-search"
             name="product-search"

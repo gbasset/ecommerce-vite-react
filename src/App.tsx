@@ -1,13 +1,11 @@
-
-import { ProductSearch } from './features/product/search-product/ui/ProductSearch/ProductSearch.tsx';
+import Header from 'common/layout/Header/Header';
 function App() {
     const handleSubmit = (search: string) => {
         console.log(search);
     };
+    const cartCount = 3;
     return (
-        <div className={'mt-3'}>
-            <ProductSearch onSubmit={handleSubmit} />
-        </div>
+            <Header onSubmit={handleSubmit} cartCount={cartCount} />
     );
 }
 
