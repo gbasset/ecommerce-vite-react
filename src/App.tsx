@@ -1,5 +1,5 @@
 import Header from 'common/layout/Header/Header';
-import ProductList from 'features/product/list-product/ProductList';
+import ProductList from 'features/product/list-product/ui/ProductList/ProductList';
 import { Product } from 'features/product/list-product/types/types';
 function App() {
     const handleSubmit = (search: string) => {

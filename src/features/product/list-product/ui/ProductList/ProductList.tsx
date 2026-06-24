@@ -1,6 +1,6 @@
 import {ReactElement} from 'react';
-import { Product } from './types/types';
-import { ProductItem } from './ui/ProductItem/ProductItem';
+import { Product } from '../../types/types';
+import { ProductItem } from '../ProductItem/ProductItem';
 type Props = {
     products: Product[];
 };
