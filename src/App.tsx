@@ -1,46 +1,23 @@
 import Header from 'common/layout/Header/Header';
-import ProductList from 'features/product/list-product/ui/ProductList/ProductList';
-import { Product } from 'features/product/list-product/types/types';
+import Product from 'features/product/display-product/ui/Product/Product';
+import { ProductData } from 'features/product/display-product/types/types';
 function App() {
     const handleSubmit = (search: string) => {
         console.log(search);
     };
     const cartCount = 3;
-    const products: Product[] = [{
-        id: '1',
+    const products: ProductData = {
         name: 'Product 1',
         price: 100,
         picture: '',
-    },
-    {
-        id: '2',
-        name: 'Product 2',
-        price: 200,
-        picture: '',
-    },
-    {
-        id: '3',
-        name: 'Product 3',
-        price: 300,
-        picture: '',
-    },
-    {
-        id: '4',
-        name: 'Product 4',
-        price: 400,
-        picture: '',
-    },
-    {
-        id: '5',
-        name: 'Product 5',
-        price: 500,
-        picture: '',
-    },
-];
+        description: 'Description of the product',
+    };
     return (<>
     
             <Header onSubmit={handleSubmit} cartCount={cartCount} />
-                <ProductList products={products} />
+            <div className='m-5'>
+                <Product product={products} addToCart={() => console.log('add to cart')} />
+            </div>
     </>
     );
 }
