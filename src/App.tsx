@@ -1,22 +1,27 @@
 import Header from 'common/layout/Header/Header';
-import Product from 'features/product/display-product/ui/Product/Product';
-import { ProductData } from 'features/product/display-product/types/types';
+
+import { CartProductItem } from 'features/cart/list-cart-products/ui/CartProductItem';
+import { CartProductItemData } from 'features/cart/list-cart-products/types';
 function App() {
     const handleSubmit = (search: string) => {
         console.log(search);
     };
+    const handleRemoveFromCart = () => {
+        console.log('remove from cart');
+    };
     const cartCount = 3;
-    const products: ProductData = {
+    const products: CartProductItemData = {
         name: 'Product 1',
         price: 100,
         picture: '',
-        description: 'Description of the product',
+        id: '1',
     };
+
     return (<>
     
             <Header onSubmit={handleSubmit} cartCount={cartCount} />
             <div className='m-5'>
-                <Product product={products} addToCart={() => console.log('add to cart')} />
+                <CartProductItem cartProduct={products} removeFromCart={handleRemoveFromCart} />
             </div>
     </>
     );
