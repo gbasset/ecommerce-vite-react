@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from 'common/layout/Header/Header';
 
 import { CartProductItemData } from 'features/cart/list-cart-products/types';
@@ -7,9 +7,41 @@ import Product from 'features/product/display-product/ui/Product/Product';
 import ProductList from 'features/product/list-product';
 import type { Product as ListProduct } from 'features/product/list-product/types/types';
 import type { ProductData } from 'features/product/display-product/types/types';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
-function App() {
+import { BrowserRouter, Route, Routes ,useMatch} from 'react-router-dom';
+const productToDisplay : Record<string, ProductData> = {
+    '1': {
+    name: 'Mobile phone',
+    picture: '',
+    price: 1000,
+    description: 'The mobile phone is a superior smartphone that offers unmatched performance and top-tier camera features. Enjoy the sleek design, powerful A15 Bionic chip, and durable Ceramic Shield front cover. It offers Dual 12MP camera system: Ultra Wide and Wide cameras, and up to 19 hours of video playback. Experience the next level of smart techn'
+    },
+    '2': {
+    name: 'Laptop',
+    picture: '',
+    price: 1500,
+    description: 'The Laptop is a powerful machine that offers unmatched performance and top-tier camera features. Enjoy the sleek design, powerful A15 Bionic chip, and durable Ceramic Shield front cover. It offers Dual 12MP camera system: Ultra Wide and Wide cameras, and up to 19 hours of video playback. Experience the next level of smart techn'
+    },
+    '3': {
+    name: 'Tablet',
+    picture: '',
+    price: 500,
+    description: 'The Tablet is a powerful machine that offers unmatched performance and top-tier camera features. Enjoy the sleek design, powerful A15 Bionic chip, and durable Ceramic Shield front cover. It offers Dual 12MP camera system: Ultra Wide and Wide cameras, and up to 19 hours of video playback. Experience the next level of smart techn'
+    },
+    '4': {
+    name: 'Iphone 15',
+    picture: '',
+    price: 1500,
+    description: 'The Iphone 15 is a powerful machine that offers unmatched performance and top-tier camera features. Enjoy the sleek design, powerful A15 Bionic chip, and durable Ceramic Shield front cover. It offers Dual 12MP camera system: Ultra Wide and Wide cameras, and up to 19 hours of video playback. Experience the next level of smart techn'
+    },
+    '5': {
+    name: 'Iphone 16',
+    picture: '',
+    price: 1600,
+    description: 'The Iphone 16 is a powerful machine that offers unmatched performance and top-tier camera features. Enjoy the sleek design, powerful A15 Bionic chip, and durable Ceramic Shield front cover. It offers Dual 12MP camera system: Ultra Wide and Wide cameras, and up to 19 hours of video playback. Experience the next level of smart techn'
+    },
+};
+function AppContent() {
+    const matchProductPage = useMatch('/product/:id');
     const [allProducts, setallProducts] = useState<ListProduct[]>([
         {
             id: '1',
@@ -43,7 +75,7 @@ function App() {
     }
     ]);
     const [products, setProducts] = useState<ListProduct[]>(allProducts);
-
+    const [product, setProduct] = useState<ProductData>(productToDisplay['1'])
     const [cartProducts, setCartProducts] = useState<CartProductItemData[]>( [{
         id: '1',
         name: 'Product 1',
@@ -62,39 +94,43 @@ function App() {
     };
 
     const cartCount = 3;
-    const product: ProductData = {
-        name: 'Mobile phone',
-        picture: ''
-        ,
-        price: 1000,
-        description:
-       " The mobile phone is a superior smartphone that offers unmatched performance and top-tier camera features. Enjoy the sleek design, powerful A15 Bionic chip, and durable Ceramic Shield front cover. It offers Dual 12MP camera system: Ultra Wide and Wide cameras, and up to 19 hours of video playback. Experience the next level of smart techn"
-    };
-    
+
+    useEffect(() => {
+        const productId = matchProductPage?.params.id;
+        if (productId && productToDisplay[productId]) {
+            setProduct(productToDisplay[productId]);
+        }
+    }, [matchProductPage]);
+
     return (
-         <BrowserRouter>
-        <Header onSubmit={handleSubmit} cartCount={cartCount} />
-        <Routes>
-        <Route path="/" element={<ProductList products={products} />}
-/>
-            <Route
-            path="/product/:id"
-            element={<Product product={product} addToCart={handleAddToCart}
-            />}
-            />
-            <Route
-            path="/cart"
-            element={
-            <CartProductList
-            cartProducts={cartProducts}
-            removeFromCart={handleRemoveFromCart}
-            />}
-
-/>
-
-        </Routes>
-       
-         </BrowserRouter>
+        <>
+            <Header onSubmit={handleSubmit} cartCount={cartCount} />
+            <Routes>
+                <Route path="/" element={<ProductList products={products} />} />
+                <Route
+                    path="/product/:id"
+                    element={<Product product={product} addToCart={handleAddToCart} />}
+                />
+                <Route
+                    path="/cart"
+                    element={
+                        <CartProductList
+                            cartProducts={cartProducts}
+                            removeFromCart={handleRemoveFromCart}
+                        />
+                    }
+                />
+            </Routes>
+        </>
     );
 }
+
+function App() {
+    return (
+        <BrowserRouter>
+            <AppContent />
+        </BrowserRouter>
+    );
+}
+
 export default App;
