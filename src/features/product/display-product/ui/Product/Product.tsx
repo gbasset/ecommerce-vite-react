@@ -7,8 +7,10 @@ type Props = {
     product: ProductData;
     addToCart: () => void;
 };
+
 const borderStyle = 'border border-gray-300 border-solid rounded-lg';
 export default function Product({product, addToCart}: Props) {
+    console.log('product', product);
   return (
     <div>
         <div>
