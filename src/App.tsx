@@ -10,7 +10,7 @@ import type { ProductData } from 'features/product/display-product/types/types';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
-    const [products, setProducts] = useState<ListProduct[]>([
+    const [allProducts, setallProducts] = useState<ListProduct[]>([
         {
             id: '1',
             name: 'Product 1',
@@ -42,6 +42,7 @@ function App() {
         picture: '',
     }
     ]);
+    const [products, setProducts] = useState<ListProduct[]>(allProducts);
 
     const [cartProducts, setCartProducts] = useState<CartProductItemData[]>( [{
         id: '1',
@@ -50,7 +51,8 @@ function App() {
         picture: '',
     }]);
     const handleSubmit = (search: string) => {
-        console.log(search);
+        const filteredProducts = allProducts.filter(product => product.name.toLowerCase().includes(search.toLowerCase()));
+        setProducts(filteredProducts);
     };
     const handleRemoveFromCart = () => {
         console.log('remove from cart');
