@@ -123,8 +123,13 @@ function AppContent() {
         const filteredProducts = allProducts.filter(product => product.name.toLowerCase().includes(search.toLowerCase()));
         setProducts(filteredProducts);
     };
-    const handleRemoveFromCart = () => {
+    const handleRemoveFromCart = (productId: CartProductItemData['id']) => {
         console.log('remove from cart');
+        const productIsInCart = cartProducts.some(cartProduct => cartProduct.id === productId);
+        if (productIsInCart) {
+            const cartProductsWithoutProduct = cartProducts.filter(cartProduct => cartProduct.id !== productId);
+            setCartProducts(cartProductsWithoutProduct);
+        }
 
     };
     const handleAddToCart = (productId: string) => {
