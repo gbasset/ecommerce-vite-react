@@ -119,12 +119,12 @@ function AppContent() {
         price: 100,
         picture: '',
     }]);
+    const cartCount = cartProducts.length;
     const handleSubmit = (search: string) => {
         const filteredProducts = allProducts.filter(product => product.name.toLowerCase().includes(search.toLowerCase()));
         setProducts(filteredProducts);
     };
     const handleRemoveFromCart = (productId: CartProductItemData['id']) => {
-        console.log('remove from cart');
         const productIsInCart = cartProducts.some(cartProduct => cartProduct.id === productId);
         if (productIsInCart) {
             const cartProductsWithoutProduct = cartProducts.filter(cartProduct => cartProduct.id !== productId);
@@ -133,15 +133,12 @@ function AppContent() {
 
     };
     const handleAddToCart = (productId: string) => {
-        console.log('add to cart');
         const product = productToAddToCart[productId];
         const isProductInCart = cartProducts.some(cartProduct => cartProduct.id === productId);
         if (product && !isProductInCart) {
             setCartProducts([...cartProducts, product]);
         }
     };
-
-    const cartCount = 3;
 
     useEffect(() => {
         const productId = matchProductPage?.params.id;
