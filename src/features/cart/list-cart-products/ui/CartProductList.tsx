@@ -3,7 +3,7 @@ import { CartProductItemData } from '../types';
 import { CartProductItem } from './CartProductItem';
 type Props = {
 cartProducts: CartProductItemData[];
-removeFromCart: () => void;
+removeFromCart: (productId: CartProductItemData['id']) => void;
 };
 export const CartProductList = ({
 cartProducts,
@@ -19,7 +19,7 @@ return (
             >
             <CartProductItem
             cartProduct={cartProductWithoutId}
-            removeFromCart={removeFromCart}
+            removeFromCart={() => removeFromCart(id)}
             />
             </div>
         );

@@ -15,7 +15,7 @@ function Header ({ onSubmit, cartCount }: Props): ReactElement {
                     Tech shop
                 </Link>
                 <Link to="/cart" className="lg:order-3 lg:shrink-0">
-                    <CartCount cartCount={cartCount} />
+                    <CartCount cartCount={cartCount} showZero color="error" />
                 </Link>
             </div>
             <div className="flex justify-center w-full lg:order-2 lg:flex-1">

@@ -6,7 +6,7 @@ type Props = {
 };
 export const CartCount = ({ cartCount }: Props): ReactElement => {
     return (
-        <Badge badgeContent={cartCount} color={'error'}>
+        <Badge badgeContent={cartCount} showZero color={'error'}>
             <ShoppingCart className="text-white" />
         </Badge>
     );
