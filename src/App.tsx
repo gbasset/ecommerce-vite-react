@@ -11,6 +11,7 @@ import { BrowserRouter, Route, Routes ,useMatch} from 'react-router-dom';
 import { productToDisplay } from 'features/product/display-product/data/ productToDisplay';
 import { productToAddToCart } from 'features/cart/add-cart-product/data/productToAddToCart';
 import { allProducts } from 'features/product/list-product/data/allProducts';
+import { handleSubmit } from 'features/product/search-product/api/searchProducts';
 function AppContent() {
 
     const matchProductPage = useMatch('/product/:id');
@@ -23,10 +24,7 @@ function AppContent() {
         picture: '',
     }]);
     const cartCount = cartProducts.length;
-    const handleSubmit = (search: string) => {
-        const filteredProducts = allProducts.filter(product => product.name.toLowerCase().includes(search.toLowerCase()));
-        setProducts(filteredProducts);
-    };
+
     const handleRemoveFromCart = (productId: CartProductItemData['id']) => {
         const productIsInCart = cartProducts.some(cartProduct => cartProduct.id === productId);
         if (productIsInCart) {
