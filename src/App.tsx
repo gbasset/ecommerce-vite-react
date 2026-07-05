@@ -45,7 +45,10 @@ function AppContent() {
         setCartProducts([...cartProducts, product]);
         
     };
-
+    const fetchProduct = async (productId: string): Promise<void> => {
+        const product = await getProduct(productId);
+        setProduct(product);
+    };
     const fetchProducts = async (): Promise<void> => {
         const initialProducts = await getProducts();
         setProducts(initialProducts);
@@ -66,8 +69,8 @@ function AppContent() {
 
     useEffect(() => {
         const productId = matchProductPage?.params.id;
-        if (productId && productToDisplay[productId]) {
-            setProduct(productToDisplay[productId]);
+        if (productId) {
+            fetchProduct(productId);
         }
     }, [matchProductPage]);
 
