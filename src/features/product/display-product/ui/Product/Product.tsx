@@ -4,12 +4,14 @@ import type { ProductData } from '../../types/types';
 import classNames from 'classnames';
 import { AddCartButton } from 'features/cart/add-cart-product/ui/AddCartButton/AddCartButton';
 type Props = {
-    product: ProductData;
+    product: ProductData | undefined;
     addToCart: () => void;
 };
-
 const borderStyle = 'border border-gray-300 border-solid rounded-lg';
 export default function Product({product, addToCart}: Props) {
+    if (!product) {
+        return <div>Product not found</div>;
+    }
   return (
     <div>
         <div>
