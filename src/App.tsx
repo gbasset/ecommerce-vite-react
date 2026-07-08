@@ -7,7 +7,6 @@ import ProductList from 'features/product/list-product';
 import type { Product as ListProduct } from 'features/product/list-product/types/types';
 import type { ProductData } from 'features/product/display-product/types/types';
 import { BrowserRouter, Route, Routes ,useMatch} from 'react-router-dom';
-import { productToDisplay } from 'features/product/display-product/data/ productToDisplay';
 
 import { handleSubmit } from 'features/product/search-product/api/searchProducts';
 import { getProduct } from 'features/product/display-product/api/getProduct';
