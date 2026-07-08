@@ -1,6 +1,6 @@
 import type { CartProductItemData } from '../list-cart-products/types';
 import { productToAddToCart } from '../add-cart-product/data/productToAddToCart';
-type ChangeInCartResponse = {
+export type ChangeInCartResponse = {
 cartProducts: CartProductItemData[];
 cartCount: number;
 };
