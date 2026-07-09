@@ -35,13 +35,15 @@ interface CartProductsFetchedActionData {
 interface CartAddedActionData {
     type: 'cart/added';
     payload: {
-        cartProduct: CartProductItemData;
+        cartProducts: CartProductItemData[];
+        cartCount: number;
     };
 }
 interface CartRemovedActionData {
     type: 'cart/removed';
     payload: {
-        cartProduct: CartProductItemData;
+        cartProducts: CartProductItemData[];
+        cartCount: number;
     };
 }
 
