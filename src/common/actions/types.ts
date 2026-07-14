@@ -1,17 +1,18 @@
 import { CartProductItemData } from "features/cart/list-cart-products/types";
+import { Product } from "features/product/list-product/types/types";
 import { ProductData } from "features/product/display-product/types/types";
 
 interface ProductsFetchedActionData {
     type: 'products/fetched';
     payload: {
-        products: ProductData[];
+        products: Product[];
     };
 }
 
 interface ProductsFilteredActionData {
     type: 'products/filtered';
     payload: {
-        products: ProductData[];
+        products: Product[];
     };
 }
 interface ProductFetchedActionData {
