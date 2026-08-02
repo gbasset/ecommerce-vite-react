@@ -95,8 +95,6 @@ function AppContent() {
                     path="/cart"
                     element={
                         <CartProductList
-                            cartProducts={state.cartProducts}
-                            removeFromCart={handleRemoveFromCart}
                         />
                     }
                 />
