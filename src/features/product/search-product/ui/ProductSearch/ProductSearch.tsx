@@ -2,11 +2,10 @@ import type { ReactElement, ChangeEvent, FormEvent } from 'react';
 import { Search } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import { useState } from 'react';
-type Props = {
-    onSubmit: (search: string) => void;
-};
-export const ProductSearch = ({ onSubmit }: Props): ReactElement => {
+import useOnSubmit from '../../hooks/useOnSubmit/useOnSubmit';
+export const ProductSearch = (): ReactElement => {
     const [search, setSearch] = useState('');
+    const onSubmit = useOnSubmit();
     const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
     };

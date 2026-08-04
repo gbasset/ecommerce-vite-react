@@ -1,4 +1,4 @@
 import { createContext } from 'react';
-import type { CartProductItemData } from '../features/cart/list-cart-products/types';
+import type { StateData } from '../common/states/types';
 
-export const StateContext = createContext<CartProductItemData[] | null>(null);
+export const StateContext = createContext<StateData | null>(null);

@@ -1,13 +1,15 @@
 import { CartCount } from 'features/cart/display-cart-count/ui/CartCount/CartCount';
 import { ProductSearch } from 'features/product/search-product/ui/ProductSearch/ProductSearch';
-import type { ReactElement } from 'react';
+import { StateContext } from '../../../context/StateContext';
+import { useContext, type ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 
-type Props = {
-    onSubmit: (search: string) => void;
-    cartCount: number;
-};
-function Header ({ onSubmit, cartCount }: Props): ReactElement {
+function Header (): ReactElement {
+    const state = useContext(StateContext);
+    if (state === null) {
+        throw new Error('Header must be used within StoreContextProvider');
+    }
+    const cartCount = state.cartProducts.length;
     return (
         <header className="bg-primary flex flex-col p-4 lg:flex-row lg:items-center lg:gap-4">
             <div className="flex items-center justify-between w-full mb-8 lg:mb-0 lg:contents">
@@ -19,7 +21,7 @@ function Header ({ onSubmit, cartCount }: Props): ReactElement {
                 </Link>
             </div>
             <div className="flex justify-center w-full lg:order-2 lg:flex-1">
-                <ProductSearch onSubmit={onSubmit} />
+                <ProductSearch />
             </div>
         </header>
     );
