@@ -6,7 +6,7 @@ import Product from 'features/product/display-product/ui/Product/Product';
 import ProductList from 'features/product/list-product';
 import { BrowserRouter, Route, Routes ,useMatch} from 'react-router-dom';
 import { getProduct } from 'features/product/display-product/api/getProduct';
-import { getCartProducts, removeProductFromCart, addProductToCart } from 'features/cart/api/cart';
+import { getCartProducts, removeProductFromCart, addProductToCart, getCartCount } from 'features/cart/api/cart';
 import { getProducts } from 'features/product/list-product/api/getProducts';
 import StoreContextProvider from 'common/store/StoreContextProvider';
 import { StateContext } from './context/StateContext';
@@ -62,6 +62,17 @@ function AppContent() {
         });
     };
 
+    const fetchCartCount = async (): Promise<void> => {
+        const initialCartCount = await getCartCount();
+        dispatch({
+            type: 'cartCount/fetched',
+            payload: { cartCount: initialCartCount },
+        });
+    };
+    useEffect(() => {
+        fetchCartCount();
+    }, []);
+    
     useEffect(() => {
         if (matchHomePage) {
             fetchProducts();
